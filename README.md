@@ -1,1 +1,3 @@
-# MetaR-CNN
+# Meta R-CNN : Towards General Solver for Instance-level Low-shot Learning
+
+coming soon...
