@@ -1,0 +1,12 @@
+data*
+attent*
+log*
+*.pth
+checkpoint
+1st
+allmetaclass
+base*
+output*
+split*
+result*
+*.sh
