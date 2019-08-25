@@ -92,6 +92,7 @@ please download the three base classes [splits](https://pan.baidu.com/s/11IxGujT
 We used [ResNet101](https://www.dropbox.com/s/iev3tkbz5wyyuz9/resnet101_caffe.pth?dl=0) pretrained model on ImageNet in our experiments. Download it and put it into the data/pretrained_model/.
 
 for example, if you want to train the first split of base and novel class with meta learning, just run:
+
 ####the first phase
 ```sh
 $>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --epochs 21 --bs 4 --nw 8 --log_dir checkpoint --save_dir models/meta/first --meta_type 1 --meta_train True --meta_loss True 
@@ -101,6 +102,7 @@ $>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --ep
 $>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --epochs 30 --bs 4 --nw 8 --log_dir checkpoint --save_dir models/meta/first --r True --checksession 1 --checkepoch 20 --checkpoint 3081 --phase 2 --shots 10 -meta_train True --meta_loss True --meta_type 1
 ```
 ###Testing
+
 if you want to evaluate the performance of meta trained model, simply run:
 ```sh
 $>CUDA_VISIBLE_DEVICES=0 python test_metarcnn.py --dataset pascal_voc_0712 --net metarcnn --load_dir models/meta/fisrt  --checksession 10 --checkepoch 30 --checkpoint 111 --shots 10  --meta_type 1 --meta_test True --meta_loss True
