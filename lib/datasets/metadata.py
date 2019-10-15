@@ -29,12 +29,14 @@ class MetaDataset(data.Dataset):
         shuffle(bool)
     """
 
-    def __init__(self, root, image_sets, metaclass, img_size, shots=1, shuffle=False):
+    def __init__(self, root, image_sets, metaclass, img_size, shots=1, shuffle=False, phase=1):
         self.root = root
         self.image_set = image_sets
         self.img_size = img_size
         self.metaclass = metaclass
-        self.shots = shots * 3
+        self.shots = shots
+        if phase == 2:
+            self.shots = shots * 3
         self.shuffle=shuffle
         self._annopath = os.path.join('%s', 'Annotations', '%s.xml')
         self._imgpath = os.path.join('%s', 'JPEGImages', '%s.jpg')

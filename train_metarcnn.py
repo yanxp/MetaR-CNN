@@ -216,8 +216,12 @@ if __name__ == '__main__':
     if args.meta_train:
         # construct the input dataset of PRN network
         img_size = 224
+        if args.phase == 1:
+            img_set = [('2007', 'trainval'), ('2012', 'trainval')]
+        else:
+            img_set = [('2007', 'trainval')]
         metadataset = MetaDataset('data/VOCdevkit2007',
-                                     [('2007', 'trainval')], metaclass, img_size, shots=shots, shuffle=True)
+                                     img_set, metaclass, img_size, shots=shots, shuffle=True,phase = args.phase)
 
         metaloader = torch.utils.data.DataLoader(metadataset, batch_size=1, shuffle=False, num_workers=0,
                                                  pin_memory=True)
