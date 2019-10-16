@@ -99,7 +99,7 @@ $>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --ep
 ```
 #### the second phase
 ```sh
-$>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --epochs 30 --bs 4 --nw 8 --log_dir checkpoint --save_dir models/meta/first --r True --checksession 1 --checkepoch 20 --checkpoint 3081 --phase 2 --shots 10 -meta_train True --meta_loss True --meta_type 1
+$>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --epochs 30 --bs 4 --nw 8 --log_dir checkpoint --save_dir models/meta/first --r True --checksession 1 --checkepoch 20 --checkpoint 3081 --phase 2 --shots 10 --meta_train True --meta_loss True --meta_type 1
 ```
 ### Testing
 
