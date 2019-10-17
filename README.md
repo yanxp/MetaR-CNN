@@ -2,7 +2,7 @@
 
 Code for reproducing the results in the following paper, and the code is built on top of [jwyang/faster-rcnn.pytorch](https://github.com/jwyang/faster-rcnn.pytorch)
 
-**<a href="">Meta R-CNN : Towards General Solver for Instance-level Low-shot Learning</a>**
+**<a href="https://yanxp.github.io/metarcnn.html">Meta R-CNN : Towards General Solver for Instance-level Low-shot Learning</a>**
 
 <a href="https://yanxp.github.io/">Xiaopeng Yan*</a>,
 <a href="http://cziliang.com">Ziliang Chen*</a>,
@@ -105,7 +105,7 @@ $>CUDA_VISIBLE_DEVICES=0 python train_metarcnn.py --dataset pascal_voc_0712 --ep
 
 if you want to evaluate the performance of meta trained model, simply run:
 ```sh
-$>CUDA_VISIBLE_DEVICES=0 python test_metarcnn.py --dataset pascal_voc_0712 --net metarcnn --load_dir models/meta/fisrt  --checksession 10 --checkepoch 30 --checkpoint 111 --shots 10  --meta_type 1 --meta_test True --meta_loss True
+$>CUDA_VISIBLE_DEVICES=0 python test_metarcnn.py --dataset pascal_voc_0712 --net metarcnn --load_dir models/meta/first  --checksession 10 --checkepoch 30 --checkpoint 111 --shots 10  --meta_type 1 --meta_test True --meta_loss True --phase 2
 ```
 
 we provide the part models with meta training and without meta training in the following:
