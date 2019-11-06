@@ -53,6 +53,8 @@ def update_keyvalue(rdb, idx):
     for k in keys:
         if isinstance(r[k], list):
             r[k] = [rdb[k][idx]]
+        elif isinstance(r[k], np.ndarray):
+            r[k]=np.array([rdb[k][idx]], dtype=r[k].dtype)
     return r
 
 
