@@ -86,7 +86,7 @@ mkdir data
 ```
 **PASCAL_VOC 07+12**: Please follow the instructions in [py-faster-rcnn](https://github.com/rbgirshick/py-faster-rcnn#beyond-the-demo-installation-for-training-and-testing-models) to prepare VOC datasets. Actually, you can refer to any others. After downloading the data, create softlinks in the folder data/.
 
-please download the three base classes [splits](https://pan.baidu.com/s/11IxGujTTegLEXFsaiohV_Q)[GoogleDrive](https://drive.google.com/drive/folders/14gtxnxWokk3eO6Oe5SrEG6_R9Dt6efT8?usp=sharing) and put them into VOC2007 and VOC2012 ImageSets/Main dirs.
+please download the three base classes [splits](https://pan.baidu.com/s/11IxGujTTegLEXFsaiohV_Q)[[GoogleDrive](https://drive.google.com/drive/folders/14gtxnxWokk3eO6Oe5SrEG6_R9Dt6efT8?usp=sharing)] and put them into VOC2007 and VOC2012 ImageSets/Main dirs.
 
 ### Training
 We used [ResNet101](https://www.dropbox.com/s/iev3tkbz5wyyuz9/resnet101_caffe.pth?dl=0) pretrained model on ImageNet in our experiments. Download it and put it into the data/pretrained_model/.
@@ -109,7 +109,7 @@ $>CUDA_VISIBLE_DEVICES=0 python test_metarcnn.py --dataset pascal_voc_0712 --net
 ```
 
 we provide the part models with meta training and without meta training in the following:
-[Meta Models](https://pan.baidu.com/s/1N3PW9WTi82lbdURNAz7EFA)[GoogleDrive](https://drive.google.com/file/d/19gapxklxKCwYIyGszOMhQKNDqYOLeubn/view?usp=sharing) and [WoMeta Models](https://pan.baidu.com/s/1GkjUJmaOaEWzh3z2fs7ieA)[GoogleDrive](https://drive.google.com/file/d/1G6xYH9M_bAAqUec1ARufv0ELi_pd7ERj/view?usp=sharing)
+[Meta Models](https://pan.baidu.com/s/1N3PW9WTi82lbdURNAz7EFA)[[GoogleDrive](https://drive.google.com/file/d/19gapxklxKCwYIyGszOMhQKNDqYOLeubn/view?usp=sharing)] and [WoMeta Models](https://pan.baidu.com/s/1GkjUJmaOaEWzh3z2fs7ieA)[[GoogleDrive](https://drive.google.com/file/d/1G6xYH9M_bAAqUec1ARufv0ELi_pd7ERj/view?usp=sharing)]
 
 ### Citation
 
