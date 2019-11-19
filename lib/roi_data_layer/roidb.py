@@ -67,7 +67,7 @@ def filter_class_roidb(roidb, shot, imdb):
       class_count[cls] = 0
   new_roidb = []
   length = len(roidb) // 2 # consider the flipped
-  for idx, rdb in enumerate(roidb[:length // 2]):
+  for idx, rdb in enumerate(roidb[:length]):
     rdb_flipped = roidb[idx + length]
     flag = False
     for i in range(len(rdb['gt_classes'])):
@@ -77,11 +77,13 @@ def filter_class_roidb(roidb, shot, imdb):
           r_flipped = update_keyvalue(rdb_flipped,i)
           flag = True
           class_count[class_id] += 1
+          break
       elif class_id <= 15 :
           r = update_keyvalue(rdb, i)
           r_flipped = update_keyvalue(rdb_flipped, i)
           flag = True
           class_count[class_id] += 1
+          break
     if flag == True:
         new_roidb.append(r);new_roidb.append(r_flipped)
   return new_roidb
