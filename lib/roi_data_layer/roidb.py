@@ -76,8 +76,7 @@ def filter_class_roidb(roidb, shot, imdb):
     gt_overlaps_flipped = []
     max_classes_flipped = []
     max_overlaps_flipped = []
-    i = idx
-    rdb_flipped = roidb[i + length]
+    rdb_flipped = roidb[idx + length]
     for i in range(len(rdb['gt_classes'])):
       cls_id = rdb['gt_classes'][i]
       if class_count[cls_id] < shot and cls_id > 15:
