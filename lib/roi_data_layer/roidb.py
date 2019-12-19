@@ -54,36 +54,98 @@ def update_keyvalue(rdb, idx):
         if isinstance(r[k], list):
             r[k] = [rdb[k][idx]]
         elif isinstance(r[k], np.ndarray):
-            r[k]=np.array([rdb[k][idx]], dtype=r[k].dtype)
+            r[k] = np.array(rdb[k[idx]], dtype=r[k].dtype)
     return r
 
 
 def filter_class_roidb(roidb, shot, imdb):
-  '''filter the class roidbs of prn input :
-     the novel roidb number is shot
-     '''
   class_count = collections.defaultdict(int)
   for cls in range(1, len(imdb.classes)):
       class_count[cls] = 0
   new_roidb = []
   length = len(roidb) // 2 # consider the flipped
   for idx, rdb in enumerate(roidb[:length]):
+    boxes = []
+    gt_classes = []
+    gt_overlaps = []
+    max_classes = []
+    max_overlaps = []
+
+    boxes_flipped = []
+    gt_classes_flipped = []
+    gt_overlaps_flipped = []
+    max_classes_flipped = []
+    max_overlaps_flipped = []
+    i = idx
+    rdb_flipped = roidb[i + length]
+    for i in range(len(rdb['gt_classes'])):
+      cls_id = rdb['gt_classes'][i]
+      if class_count[cls_id] < shot and cls_id > 15:
+        boxes.append(rdb['boxes'][i])
+        gt_classes.append(rdb['gt_classes'][i])
+        gt_overlaps.append(rdb['gt_overlaps'][i])
+        max_classes.append(rdb['max_classes'][i])
+        max_overlaps.append(rdb['max_overlaps'][i])
+
+        boxes_flipped.append(rdb_flipped['boxes'][i])
+        gt_classes_flipped.append(rdb_flipped['gt_classes'][i])
+        gt_overlaps_flipped.append(rdb_flipped['gt_overlaps'][i])
+        max_classes_flipped.append(rdb_flipped['max_classes'][i])
+        max_overlaps_flipped.append(rdb_flipped['max_overlaps'][i])
+        class_count[cls_id] += 1
+
+      elif cls_id <= 15:
+        boxes.append(rdb['boxes'][i])
+        gt_classes.append(rdb['gt_classes'][i])
+        gt_overlaps.append(rdb['gt_overlaps'][i])
+        max_classes.append(rdb['max_classes'][i])
+        max_overlaps.append(rdb['max_overlaps'][i])
+
+        boxes_flipped.append(rdb_flipped['boxes'][i])
+        gt_classes_flipped.append(rdb_flipped['gt_classes'][i])
+        gt_overlaps_flipped.append(rdb_flipped['gt_overlaps'][i])
+        max_classes_flipped.append(rdb_flipped['max_classes'][i])
+        max_overlaps_flipped.append(rdb_flipped['max_overlaps'][i])
+        class_count[cls_id] += 1
+
+    if len(boxes) > 0:
+      new_roidb.append(
+        {'boxes': np.array(boxes, dtype=np.uint16), 'gt_classes': np.array(gt_classes, dtype=np.int32),
+         'gt_overlaps': gt_overlaps, 'flipped': rdb['flipped'], 'img_id': rdb['img_id'],
+         'image': rdb['image'],
+         'width': rdb['width'], 'height': rdb['height'], 'max_classes': np.array(max_classes),
+         'need_crop': rdb['need_crop'],
+         'max_overlaps': np.array(max_overlaps, dtype=np.float32)})
+
+      new_roidb.append(
+        {'boxes': np.array(boxes_flipped, dtype=np.uint16),
+         'gt_classes': np.array(gt_classes_flipped, dtype=np.int32),
+         'gt_overlaps': gt_overlaps_flipped, 'flipped': rdb_flipped['flipped'],
+         'img_id': rdb_flipped['img_id'],
+         'image': rdb_flipped['image'],
+         'width': rdb_flipped['width'], 'height': rdb_flipped['height'],
+         'max_classes': np.array(max_classes_flipped),
+         'need_crop': rdb_flipped['need_crop'],
+         'max_overlaps': np.array(max_overlaps_flipped, dtype=np.float32)})
+    
+    '''
     rdb_flipped = roidb[idx + length]
-    flag = False
     for i in range(len(rdb['gt_classes'])):
       class_id = rdb['gt_classes'][i]
       if class_count[class_id] < shot and class_id > 15:
           r = update_keyvalue(rdb, i)
+          new_roidb.append(r)
           r_flipped = update_keyvalue(rdb_flipped,i)
-          flag = True
+          new_roidb.append(r_flipped)
           class_count[class_id] += 1
-      elif class_id <= 15 :
+      elif class_count[class_id] < 3*shot and class_id <= 15:
           r = update_keyvalue(rdb, i)
-          r_flipped = update_keyvalue(rdb_flipped, i)
-          flag = True
+          new_roidb.append(r)
           class_count[class_id] += 1
-    if flag == True:
-        new_roidb.append(r);new_roidb.append(r_flipped)
+          r_flipped = update_keyvalue(rdb_flipped, i)
+          new_roidb.append(r_flipped)
+          class_count[class_id] += 1
+    '''
   return new_roidb
 
 
