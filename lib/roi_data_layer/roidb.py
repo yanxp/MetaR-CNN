@@ -128,24 +128,6 @@ def filter_class_roidb(roidb, shot, imdb):
          'need_crop': rdb_flipped['need_crop'],
          'max_overlaps': np.array(max_overlaps_flipped, dtype=np.float32)})
     
-    '''
-    rdb_flipped = roidb[idx + length]
-    for i in range(len(rdb['gt_classes'])):
-      class_id = rdb['gt_classes'][i]
-      if class_count[class_id] < shot and class_id > 15:
-          r = update_keyvalue(rdb, i)
-          new_roidb.append(r)
-          r_flipped = update_keyvalue(rdb_flipped,i)
-          new_roidb.append(r_flipped)
-          class_count[class_id] += 1
-      elif class_count[class_id] < 3*shot and class_id <= 15:
-          r = update_keyvalue(rdb, i)
-          new_roidb.append(r)
-          class_count[class_id] += 1
-          r_flipped = update_keyvalue(rdb_flipped, i)
-          new_roidb.append(r_flipped)
-          class_count[class_id] += 1
-    '''
   return new_roidb
 
 
