@@ -114,11 +114,12 @@ we provide the part models with meta training and without meta training in the f
 ### Citation
 
 ```
-@inproceedings{yanICCV19metarcnn,
-    Author = {Yan, Xiaopeng and Chen, Ziliang and Xu, Anni and Wang, Xiaoxi and Liang, Xiaodan and Lin, Liang},
-    Title = {Meta R-CNN : Towards General Solver for Instance-level Low-shot Learning.},
-    Booktitle = {Proc. of IEEE International Conference on Computer Vision ({ICCV})},
-    Year = {2019}
+@inproceedings{yan2019meta,
+  title={Meta r-cnn: Towards general solver for instance-level low-shot learning},
+  author={Yan, Xiaopeng and Chen, Ziliang and Xu, Anni and Wang, Xiaoxi and Liang, Xiaodan and Lin, Liang},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
+  pages={9577--9586},
+  year={2019}
 }
 ```
 
